@@ -1,13 +1,13 @@
-return console.log("node says : waxOn/waxOff !");
+// return console.log("node says : waxOn/waxOff !");
 
 require("dotenv").config();
 require("./config/mongodb"); // database initial setup
-require("./helpers/hbs"); // utils for hbs templates
+// require("./helpers/hbs"); // utils for hbs templates
 
 
 // base dependencies
 const express = require("express");
-const hbo = require("hbs");
+const hbs = require("hbs");
 const app = express();
 const session = require("express-session");
 const mongoose = require("mongoose");
@@ -17,9 +17,9 @@ const cookieParser = require("cookie-parser");
 
 // initial config
 app.set("view engine", "hbs");
-app.set("views", __dirname + "/view");
+app.set("views", __dirname + "/views");
 app.use(express.static("public"));
-hbs.registerPartials(__dirname + "/views/partials");
+hbs.registerPartials(__dirname + "/views/partial");
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cookieParser());
@@ -28,7 +28,8 @@ app.use(cookieParser());
 // SESSION SETUP
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    // secret: process.env.SESSION_SECRET,
+    secret: process.env.CLOUDINARY_SECRET,
     cookie: { maxAge: 60000 }, // in millisec
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
@@ -81,3 +82,6 @@ const listener = app.listen(process.env.PORT, () => {
     `app started at ${process.env.SITE_URL}:${process.env.PORT}`
   );
 });
+
+
+module.exports = app
