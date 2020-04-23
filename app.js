@@ -81,6 +81,7 @@ app.use(eraseSessionMessage());
 const basePageRouter = require("./routes/index");
 app.use("/", basePageRouter);
 app.use("/sneakers/", require('./routes/dashboard_sneaker'))
+app.use("/", require('./routes/auth'))
 
 const listener = app.listen(process.env.PORT, () => {
   console.log(
