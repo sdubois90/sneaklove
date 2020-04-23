@@ -17,12 +17,35 @@
   <section class="products-wrapper">
     <div class="products-infos">
       <h4 class="products-title">
+{{!-- 
         {{#compare category "collection" operator="==="}}
         Whole
         {{/compare}}
         {{#compare category "collection" operator="!="}}
         {{category}}
+        {{/compare}} --}}
+
+        {{!-- {{#compare value "===" value2}}
+            Values are equal!
+        {{else}}
+            Values are different!
         {{/compare}}
+
+
+const test = sneaker.category
+
+        {{#compare main_category.option.value men operator="==="}}
+                {{category}}
+        {{/compare}}
+
+        {{#compare category.option.value women operator="==="}}
+                {{category}}
+        {{/compare}}
+
+        {{#compare category.option.value kids operator="==="}}
+                {{category}}
+        {{/compare}} --}}
+
         collection <span id="products_count" class="products-count">({{sneakers.length}})</span>
       </h4>
       <p class="products-subtitle">Prepare for your miles with the latest styles and colors of women’s running shoes.

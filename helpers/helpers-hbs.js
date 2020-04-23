@@ -18,7 +18,7 @@ awesome, 1 is less thant 10 !!!
 
 */
 
-hbs.registerHelper("compare", function(lvalue, rvalue, options) {
+Handlebars.registerHelper("compare", function(lvalue, operator, rvalue, options) {
   if (arguments.length < 3)
     throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
 
