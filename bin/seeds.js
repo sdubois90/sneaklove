@@ -9,7 +9,7 @@ const sneakers = [
         size: "43",
         description:"Super shoes",
         price:103,
-        category:"men",
+        category: "men",
     },
     {
         name: "Addidas",
@@ -27,7 +27,6 @@ const sneakers = [
         price: 67,
         category: "kids",
     },
-    
 ];
 
 mongoose
