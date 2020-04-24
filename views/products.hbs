@@ -17,25 +17,80 @@
   <section class="products-wrapper">
     <div class="products-infos">
       <h4 class="products-title">
+
+
+
+{{!-- 
+
+        {{#compare category "===" men}}
+         {{category}}
+        {{/compare}} --}}
+
+{{!-- 
         {{#compare category "collection" operator="==="}}
         Whole
         {{/compare}}
+
+        
         {{#compare category "collection" operator="!="}}
         {{category}}
+        {{/compare}} --}}
+
+        {{!-- {{#compare value "===" value2}}
+            Values are equal!
+        {{else}}
+            Values are different!
         {{/compare}}
-        collection <span id="products_count" class="products-count">({{sneakers.length}})</span>
+
+
+const test = sneaker.category
+
+        {{#compare main_category.option.value men operator="==="}}
+                {{category}}
+        {{/compare}}
+
+        {{#compare category.option.value women operator="==="}}
+                {{category}}
+        {{/compare}}
+
+        {{#compare category.option.value kids operator="==="}}
+                {{category}}
+        {{/compare}} --}}
+  
+
+        collection <span id="products_count" class="products-count">({{sneakers.length}}{{menSneakers.length}}{{womenSneakers.length}}{{kidsSneakers.length}})</span>
       </h4>
       <p class="products-subtitle">Prepare for your miles with the latest styles and colors of women’s running shoes.
         Take advantage of signature a footwear technologies including Zoom, Flyknite, and find the
         pairs running shoes that align with your running philosophy.</p>
     </div>
-    {{#unless sneakers}}
+    
+    {{!-- {{#unless sneakers}}
     <p>Sorry, no sneakers yet !</p>
-    {{/unless}}
+    {{/unless}} --}}
+
     <div id="products_grid" class="products-grid flexed-item">
+
       {{#each sneakers}}
       {{> sneaker_mini }}
       {{/each}}
+
+      {{#each menSneakers}}
+      {{> sneaker_mini }}
+      {{/each}}
+
+      {{#each womenSneakers}}
+      {{> sneaker_mini }}
+      {{/each}}
+
+      {{#each kidsSneakers}}
+      {{> sneaker_mini }}
+      {{/each}}
+
+
+      {{!-- {{#unless menSneakers}}
+    <p>Sorry, no sneakers yet !</p>
+    {{/unless}} --}}
     </div>
   </section>
 </div>
