@@ -13,6 +13,7 @@ const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
 const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
 
 
 // initial config
@@ -43,6 +44,8 @@ app.use(
     resave: true
   })
 );
+
+app.use(flash()); 
 
 
 app.locals.site_url = process.env.SITE_URL;
