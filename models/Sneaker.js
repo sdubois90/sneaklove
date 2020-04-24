@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const SneakerSchema = new Schema({
     name : String,
     ref : String,
-    sizes : String,
+    size : String,
     description : String,
     price: Number,
     image: {

@@ -34,7 +34,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     // secret: process.env.CLOUDINARY_SECRET,
     cookie: {
-      maxAge: 60000
+      maxAge: 600000
     }, // in millisec
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
@@ -109,7 +109,7 @@ app.use(eraseSessionMessage());
 const basePageRouter = require("./routes/index");
 app.use("/", basePageRouter);
 app.use("/", require('./routes/auth'));
-app.use("/sneakers", require('./routes/dashboard_sneaker'))
+app.use("/", require('./routes/dashboard_sneaker'))
 
 const listener = app.listen(process.env.PORT, () => {
   console.log(
