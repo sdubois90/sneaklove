@@ -1,3 +1,6 @@
+// TEST GITHUB
+
+
 const express = require("express");
 const router = express.Router();
 const Sneaker = require("../models/Sneaker");
@@ -13,13 +16,13 @@ router.get("/one-product/:id", (req, res) => {
   Sneaker.findById(req.params.id)
     .then((dbResult) => {
       res.render("one_product.hbs", {
-      sneaker: dbResult
-    });
+        sneaker: dbResult
+      });
     })
     .catch((dbErr) => {
-    console.log(dbErr)
-  })
-  
+      console.log(dbErr)
+    })
+
 });
 
 router.get("/sneakers/collection", (req, res) => {
