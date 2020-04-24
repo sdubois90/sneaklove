@@ -1,8 +1,3 @@
-// TEST GITHUB
-//aaa
-
-// TOTO
-
 const express = require("express");
 const router = express.Router();
 const Sneaker = require("../models/Sneaker");
