@@ -1,4 +1,5 @@
 // TEST GITHUB
+//aaa
 
 
 const express = require("express");
@@ -39,9 +40,7 @@ router.get("/sneakers/collection", (req, res) => {
 
 
 router.get("/sneakers/men", (req, res) => {
-  Sneaker.find({
-      category: 'men'
-    })
+  Sneaker.find({ category: 'men' })
     .then((dbResult) => {
       res.render("products.hbs", {
         menSneakers: dbResult,
@@ -53,9 +52,7 @@ router.get("/sneakers/men", (req, res) => {
 });
 
 router.get("/sneakers/women", (req, res) => {
-  Sneaker.find({
-      category: 'women'
-    })
+  Sneaker.find({ category: 'women' })
     .then((dbResult) => {
       res.render("products.hbs", {
         womenSneakers: dbResult,
@@ -67,9 +64,7 @@ router.get("/sneakers/women", (req, res) => {
 });
 
 router.get("/sneakers/kids", (req, res) => {
-  Sneaker.find({
-      category: 'kids'
-    })
+  Sneaker.find({ category: 'kids' })
     .then((dbResult) => {
       res.render("products.hbs", {
         kidsSneakers: dbResult,
