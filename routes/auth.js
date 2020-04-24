@@ -3,28 +3,73 @@ const router = new express.Router();
 const User = require("../models/User");
 // const upload = require("../config/cloudinaryUpload");
 const bcrypt = require("bcrypt");
-
+const bcryptSalt = 10;
 
 router.get("/signup", (req, res) => {
+    console.log("abc")
     res.render("signup.hbs");
 });
 
 router.post("/signup", (req, res) => {
-    const { name, lastname, email, password } = req.body;
-    const newUser = { name, lastname, email, password };
-    User.create(newUser)
-    // User.create({name, lastname, email, password})
-        .then((dbResult) => {
-            console.log(dbResult)
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(req.body.password, salt);
+    const myUser = {
+        name: req.body.name,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        password: hashPass
+    }
+    
+    User.create(myUser)
+        .then((self) => {
             res.redirect('/signin')
         })
         .catch((dbError) => {
-            console.log(dbError)
+            console.log("c'est nuuuuul")
         });
 });
 
 
-  
+
+
+
+
+
+// router.post("/signup", (req, res) => {
+//     const { name, lastname, email, password } = req.body;
+//     console.log(req.body)
+//     User.findOne({ email: email })
+//         .then((dbResult) => {
+//             if (dbResult) {
+//                 res.redirect('/signup')
+//             }
+//             else {
+//                 const salt = 10;
+//                 const passwordCrypte = bcrypt.hashSync(password, salt);
+//                 const newUser = { name, lastname, email, password: passwordCrypte }
+//             }
+//             User.create(newUser)
+//                 // User.create({name, lastname, email, password})
+//                 .then((newUser) => {
+//                     console.log(newUser)
+//                     res.redirect('/signin')
+//                 })
+//                 .catch((dbError) => {
+//                     console.log(dbError)
+//                 });
+//         })
+//         .catch((dbError) => {
+//             console.log(dbError)
+//         });
+// });
+
+
+
+
+
+
+
+
 //   router.post("/signup", upload.single("avatar"), (req, res) => {
 //     // console.log(req.file);
 //     // console.log(req.body);
@@ -41,16 +86,16 @@ router.post("/signup", (req, res) => {
 //           // Hash the password !
 //           const salt = 10;
 //           const hashedPassword = bcrypt.hashSync(password, salt);
-  
+
 //           const newUser = {
 //             email,
 //             password: hashedPassword,
 //           };
-  
+
 //           if (req.file) {
 //             newUser.avatar = req.file.secure_url;
 //           }
-  
+
 //           User.create(newUser)
 //             .then((createdUser) => {
 //               // User created !
@@ -70,9 +115,9 @@ router.post("/signup", (req, res) => {
 
 
 
-// router.get("/signin", (req, res) => {
-//     res.render("signin.hbs");
-// });
+router.get("/signin", (req, res) => {
+    res.render("signin.hbs");
+});
 
 
 
@@ -86,7 +131,7 @@ router.post("/signup", (req, res) => {
 //       error: req.flash("error"),
 //     });
 //   });
-  
+
 //   // This one is for receiving post data.
 //   router.post("/signin", (req, res) => {
 //     const { email, password } = req.body;
@@ -116,14 +161,14 @@ router.post("/signup", (req, res) => {
 //         console.log(dbErr);
 //       });
 //   });
-  
+
 //   // Render signup form.
 //   router.get("/signup", (req, res) => {
 //     res.render("auth/signup.hbs", {
 //       error: req.flash("error"),
 //     });
 //   });
-  
+
 //   router.post("/signup", upload.single("avatar"), (req, res) => {
 //     // console.log(req.file);
 //     // console.log(req.body);
@@ -140,16 +185,16 @@ router.post("/signup", (req, res) => {
 //           // Hash the password !
 //           const salt = 10;
 //           const hashedPassword = bcrypt.hashSync(password, salt);
-  
+
 //           const newUser = {
 //             email,
 //             password: hashedPassword,
 //           };
-  
+
 //           if (req.file) {
 //             newUser.avatar = req.file.secure_url;
 //           }
-  
+
 //           User.create(newUser)
 //             .then((createdUser) => {
 //               // User created !
@@ -165,7 +210,7 @@ router.post("/signup", (req, res) => {
 //         console.log(dbErr);
 //       });
 //   });
-  
+
 //   router.get("/logout", (req, res) => {
 //     // Destroys the session.
 //     // Makes the user logged out.

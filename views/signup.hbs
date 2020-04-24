@@ -7,10 +7,10 @@
   <p class="message {{msg.status}}">{{msg.text}}</p>
   {{/if}}
   
-  <form method="POST" action="/signup" id="form_user" enctype="multipart/form-data">
+  <form method="POST" action="/signup" id="form_user">
     <div class="form-item-wrapper flexed-item">
-      <label for="firstname" class="label-ref label">Name</label>
-      <input id="firstname" name="name" type="text" class="input-text input" placeholder="Albert" required value="yo">
+      <label for="name" class="label-ref label">Name</label>
+      <input id="name" name="name" type="text" class="input-text input" placeholder="Albert" required value="yo">
     </div>
     <div class="form-item-wrapper flexed-item">
       <label for="lastname" class="label-ref label">Last Name</label>
@@ -26,5 +26,6 @@
     </div>
     <button class="button-primary white">Create Account</button>
   </form>
+
   <p class="form-sub-infos">Already have an account ? <a href="/signin" class="button-link-form">Sign In</a></p>
 </section>

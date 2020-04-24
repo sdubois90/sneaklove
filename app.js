@@ -30,8 +30,8 @@ app.use(cookieParser());
 // SESSION SETUP
 app.use(
   session({
-    // secret: process.env.SESSION_SECRET,
-    secret: process.env.CLOUDINARY_SECRET,
+    secret: process.env.SESSION_SECRET,
+    // secret: process.env.CLOUDINARY_SECRET,
     cookie: {
       maxAge: 60000
     }, // in millisec
@@ -43,6 +43,7 @@ app.use(
     resave: true
   })
 );
+
 
 app.locals.site_url = process.env.SITE_URL;
 // used in front end to perform ajax request (var instead of hardcoded)
@@ -77,11 +78,35 @@ function eraseSessionMessage() {
 app.use(checkloginStatus);
 app.use(eraseSessionMessage());
 
+
+
+
+// app.use((req, res, next) => {
+//   console.log(req.session.currentUser, "logged");
+//   if (req.session.currentUser) {
+//     res.locals.isLoggedIn = true;
+//   } else {
+//     res.locals.isLoggedIn = false;
+//   }
+//   next();
+// });
+
+//Fonctionne avec le app.use ci-dessus (ci-dessous dans ./middlewares/signin.js)
+
+// module.exports = function (req, res, next) {
+//   if (req.session.currenUser) {
+//     next();
+//   } else {
+//     res.redirect("/signin")
+//   }
+// }
+
+
 // Getting/Using router(s)
 const basePageRouter = require("./routes/index");
 app.use("/", basePageRouter);
-app.use("/sneakers/", require('./routes/dashboard_sneaker'))
-app.use("/", require('./routes/auth'))
+app.use("/", require('./routes/auth'));
+app.use("/sneakers", require('./routes/dashboard_sneaker'))
 
 const listener = app.listen(process.env.PORT, () => {
   console.log(
